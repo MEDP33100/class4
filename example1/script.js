@@ -1,45 +1,30 @@
 document.addEventListener("DOMContentLoaded", (event) => {
-    //flower spin
-    const spinEl = document.querySelector('.spin');
-    spinEl.addEventListener('mouseover', () => {
-        gsap.to(spinEl, {
-            rotate: "+=360deg"
-        })
+    // gsap code here!
+
+    gsap.to('.spin', {
+        duration: 1, 
+        rotation: 360,
+        repeat: -1,
+        ease: 'power1.out'
     });
 
-    // ball bounce
-    const bounceEl = document.querySelector('.bounce');
-    bounceEl.addEventListener('mouseover', () => {
-        gsap.fromTo(bounceEl, {
-            y: -20,
-            ease: "bounce.in",
-            duration: 1,
-        }, {
-            y: 0,
-            ease: "bounce.out",
-            duration: 1,
-        });
-    });
+    gsap.from('.bounce', {
+        y: -20,
+        duration: 1,
+        repeat: -1,
+        ease: 'bounce',
+        yoyo: true,
+    })
 
-    // lick
-    const lickEl = document.querySelector('.lick');
-    lickEl.addEventListener('mouseover', () => {
-        const timeline = gsap.timeline({
-            ease: "power4.out",
-        });
-        timeline.to(lickEl, {
-            scale: 1.5,
-        });
-        timeline.to(lickEl, {
-            y: -10,
-        });
-        timeline.to(lickEl, {
-            scale: 1,
-            duration: 0.5,
-        });
-        timeline.to(lickEl, {
-            y: 0,
-            duration: 0.5,
-        });
+    const timeline = gsap.timeline({repeat: -1, repeatDelay: 1});
+    timeline.to('.lick', {
+        scale: 1.5
+    });
+    timeline.to('.lick', {
+        y: -20
+    });
+    timeline.to('.lick', {
+        scale: 1,
+        y: 0,
     })
 });
